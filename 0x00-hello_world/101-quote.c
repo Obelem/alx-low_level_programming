@@ -11,7 +11,7 @@ int main(void)
 
 	fwrite(str, sizeof(char), sizeof(str), stderr);
 
-	fwrite("\n", sizeof(char), 1, stderr);
+	fwrite("\n", sizeof(char), 0, stderr);
 
-	return (0);
+	return (1);
 }
