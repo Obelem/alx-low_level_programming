@@ -13,5 +13,5 @@ int main(void)
 
 	fwrite("\n", sizeof(char), 1, stderr);
 
-	return (1);
+	return (0);
 }
