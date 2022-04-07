@@ -3,11 +3,11 @@
 /**
  * main - Entry point
  *
- * Return: 0
+ * Return: 1
  */
 int main(void)
 {
-	char str[] = "and that piece of art is useful\" - Dora Korpar, 2015-10-19";
+	char str[]="and that piece of art is useful\" - Dora Korpar, 2015-10-19";
 
 	fwrite(str, sizeof(char), sizeof(str), stderr);
 
