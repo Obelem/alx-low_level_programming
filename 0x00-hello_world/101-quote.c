@@ -7,11 +7,7 @@
  */
 int main(void)
 {
-	char str[] = "and that piece of art is useful\" - Dora Korpar, 2015-10-19";
-
-	fwrite(str, 1, sizeof(str), stderr);
-
-	fwrite("\n", sizeof(char), 1, stderr);
+	perror("and that piece of art is useful\" - Dora Korpar, 2015-10-19\n");
 
 	return (1);
 }
