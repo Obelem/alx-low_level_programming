@@ -3,7 +3,7 @@
 /**
  * main - Entry point
  *
- * Return: 1
+ * Return: 0
  */
 int main(void)
 {
@@ -11,7 +11,7 @@ int main(void)
 
 	fwrite(str, sizeof(char), sizeof(str), stderr);
 
-	fwrite("\n", sizeof(char), 0, stderr);
+	fwrite("\n", sizeof(char), 1, stderr);
 
 	return (1);
 }
