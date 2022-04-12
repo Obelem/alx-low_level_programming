@@ -9,8 +9,10 @@
 int _abs(int)
 {
 	if (int < 0)
+	{
 		int = int * -1;
 		_putchar(int);
+	}
 
 	else
 		_putchar(int);
