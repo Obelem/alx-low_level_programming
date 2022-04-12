@@ -4,16 +4,16 @@
  * _abs - computes the absolute value of an integer
  *
  * Return: Always 0 (Success)
- * @int: The number to be worked on
+ * @n: The number to be worked on
  */
-int _abs(int)
+int _abs(int n)
 {
-	if (int < 0)
+	if (n < 0)
 	{
-		int = int * -1;
-		_putchar(int);
+		n = n * (-1);
+		return (n);
 	}
 
 	else
-		_putchar(int);
+		return (n);
 }
