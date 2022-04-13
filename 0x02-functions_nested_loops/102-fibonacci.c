@@ -16,7 +16,7 @@ int main(void)
 		x = y;
 		y = sum;
 		if (i == 48)
-			printf("ld\n", x);
+			printf("%ld\n", x);
 	}
 	return (0);
 }
