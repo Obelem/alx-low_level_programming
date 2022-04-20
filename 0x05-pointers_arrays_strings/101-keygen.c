@@ -17,8 +17,8 @@ int main(void)
 		c = rand() % 128;
 		sum += c;
 		printf("%c", c);
-		printf("\0");
 	}
+	printf("\0");
 	printf("%c", (2772 - sum));
 	return (0);
 }
