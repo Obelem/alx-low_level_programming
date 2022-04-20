@@ -19,5 +19,6 @@ int main(void)
 		printf("%c", c);
 	}
 	putchar(2772 - sum);
+	putchar('\0');
 	return (0);
 }
