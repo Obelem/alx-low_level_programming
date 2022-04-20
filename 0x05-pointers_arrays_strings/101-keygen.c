@@ -16,7 +16,7 @@ int main(void)
 	{
 		c = rand() % 128;
 		sum += c;
-		printf("%c\0", c);
+		printf("%c", c);
 	}
 	puchar(2772 - sum);
 	return (0);
