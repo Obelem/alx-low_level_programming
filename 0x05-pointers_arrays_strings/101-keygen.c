@@ -8,10 +8,16 @@
  */
 int main(void)
 {
-	int num;
+	int sum;
+	char c;
 
-	srand(time(0));
-	num = rand();
-	printf("%i\n", num);
+	srand(time(NULL));
+	while (sum <= 2645)
+	{
+		c = rand() % 128;
+		sum += c;
+		putchar(c);
+	}
+	putchar(2772 - sum);
 	return (0);
 }
