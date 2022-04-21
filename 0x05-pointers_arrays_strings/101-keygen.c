@@ -8,17 +8,33 @@
  */
 int main(void)
 {
-	int sum;
-	char c;
+	char a[0], c[0], d;
+	int i, j, k = 0;
+	printf("#Keygen by b44nz0r\n\n");
 
-	srand(time(NULL));
-	while (sum <= 2645)
+	while (k < 5 || k >= 10)
 	{
-		c = rand() % 128;
-		sum += c;
-		printf("%c", c);
+		if (k != 0)
+			printf("\n The username length should be 5 to 10 alphabets\n");
+
+		printf("enter username: ");
+		scanf("%s",a);
+		k = strlen(a);
 	}
-	printf("%c", (2772 - sum));
-	printf("\0");
-	return (0);
+
+	i = k - 1;
+	j = 0;
+
+	while (i >= 0)
+	{
+		c[j] = a[i]+i;
+		i--;
+		j++
+	}
+
+	c[j] = 0;
+	printf("\n The password is %s\n",c);
+	printf("\nHit Enter to Exit\n");
+	getchar();
+	getchar();
 }
