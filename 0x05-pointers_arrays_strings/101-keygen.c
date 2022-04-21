@@ -15,27 +15,27 @@ int main(void)
 	while (s != 2772)
 	{
 
-	i = k = s = 0;
-	while ((2772 - 122) > s)
-	{
-		j = rand() % 62;
-		p[i] = c[j];
-		s += c[j];
-		i++;
-	}
-	while(c[k])
-	{
-		if (c[k] == (2772 - s))
+		i = k = s = 0;
+		while ((2772 - 122) > s)
 		{
-			p[i] = c[k];
-			s += c[k];
+			j = rand() % 62;
+			p[i] = c[j];
+			s += c[j];
 			i++;
-			break;
 		}
-		k++;
+		while(c[k])
+		{	
+			if (c[k] == (2772 - s))
+			{
+				p[i] = c[k];
+				s += c[k];
+				i++;
+				break;
+			}
+			k++;
+		}
 	}
 	p[i] = '\0';
 	printf("%s", p);
 	return (0);	
-	}
 }
