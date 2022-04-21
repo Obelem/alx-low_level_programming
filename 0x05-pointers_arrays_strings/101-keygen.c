@@ -13,7 +13,6 @@ int main(void)
 	int i;
 	char pass[12], capLetter, letter;
 	
-	getchar();
 
 	for (i = 0; i < 4; i++)
 	{
@@ -24,5 +23,5 @@ int main(void)
 		pass[i + 3] = letter;
 		printf("%d%c%c", pass[i], pass[i + 2], pass[i + 3]);
 	}
-	printf("\n\n");
+	printf("\n");
 }
