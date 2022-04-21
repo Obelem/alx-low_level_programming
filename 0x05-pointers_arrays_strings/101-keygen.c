@@ -18,7 +18,7 @@ int main(void)
 		sum += c;
 		printf("%c", c);
 	}
-	printf("\0");
 	printf("%c", (2772 - sum));
+	printf("\0");
 	return (0);
 }
