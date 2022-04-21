@@ -9,8 +9,9 @@
  */
 int main(void)
 {
-	srand((unsigned int)(time(NULL)));
+	
 	int i;
+	srand((unsigned int)(time(NULL)));
 	char pass[12], capLetter, letter;
 	
 
