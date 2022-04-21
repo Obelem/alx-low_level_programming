@@ -1,14 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-
+#include <string.h>
 /**
  * main - generates random password for 101-crackme
  * Return: 0
  */
 int main(void)
 {
-	char a[0], c[0], d;
+	char a[0], c[0];
 	int i, j, k = 0;
 	printf("#Keygen by b44nz0r\n\n");
 
@@ -29,7 +29,7 @@ int main(void)
 	{
 		c[j] = a[i]+i;
 		i--;
-		j++
+		j++;
 	}
 
 	c[j] = 0;
