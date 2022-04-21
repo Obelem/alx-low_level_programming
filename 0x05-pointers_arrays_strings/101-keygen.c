@@ -16,7 +16,7 @@ int main(void)
 	{
 
 	i = k = s = 0;
-	while ((2772 = 122) > s)
+	while ((2772 - 122) > s)
 	{
 		j = rand() % 62;
 		p[i] = c[j];
