@@ -6,42 +6,23 @@
  */
 void print_number(int n)
 {
-	int power;
-	int neg;
-	int hold;
+	unsigned int m, d, count;
 
-	neg = 0;
-	power = 1;
-	hold = n;
 	if (n < 0)
 	{
-		_putchar('-');
-		neg = 1;
+		_putchar(45);
+		m = n * -1;
 	}
+	else
+		m = n;
+	d = m;
+	count = 1;
 
-	while (hold > 9 || hold < -9)
+	while (d > 9)
 	{
-		power *= 10;
-		hold /= 10;
+		d /= 10;
+		count *= 10;
 	}
-
-	while (power > 0)
-	{
-		if (power > 9)
-		{
-			if (!neg)
-				_putchar((n / power % 10) + '0');
-			else
-				_putchar((n / power % 10) * -1 + '0');
-			power /= 10;
-		}
-		if (power == 1)
-		{
-			if (neg)
-				_putchar((n % 10) * -1 + '0');
-			else
-				_putchar(n % 10 + '0');
-			power = 0;
-		}
-	}
+	for (; count >= 1; count /= 10)
+		_putchar(((m / count) % 10) + 48);
 }
