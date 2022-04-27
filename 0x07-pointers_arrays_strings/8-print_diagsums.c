@@ -10,10 +10,14 @@ void print_diagsums(int *a, int size)
 {
 	int row_size = size;
 
+	int i, n1, sum1, n2, sum2;
+
 	size = size * size;
 
 	/*main diagonal*/
-	int i = 0, n1 = 0, sum1 = 0;
+	i = 0;
+	n1 = 0;
+	sum1 = 0;
 
 	while (n1 < size - 1)
 	{
@@ -23,8 +27,8 @@ void print_diagsums(int *a, int size)
 	}
 
 	/*aux diagonal*/
-	int n2 = 0, sum2 = 0;
-
+	n2 = 0;
+	sum2 = 0;
 	i = 1;
 	while (size - n2 != row_size)
 	{
