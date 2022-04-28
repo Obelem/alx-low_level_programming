@@ -4,6 +4,7 @@
  * _strlen_recursion - returns length of string
  *
  * @s: string to be counted
+ * Return: address + 1 recusively and 0 at null terminator
  */
 int _strlen_recursion(char *s)
 {
