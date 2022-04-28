@@ -2,7 +2,6 @@
 /**
  * is_palindrome - Returns 1 if string is a palindrome or 0 if not
  * @s: string
- * 
  * Return: 1 or 0.
  */
 int is_palindrome(char *s)
