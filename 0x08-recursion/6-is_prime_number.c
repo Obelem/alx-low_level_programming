@@ -1,10 +1,10 @@
 #include "main.h"
 /**
- * _is_prime_number - returns the natural square root of a number.
+ * is_prime_number - returns the natural square root of a number.
  * @n: integer to check
  * Return: 1 if prime number, 0 if otherwise
  */
-int _is_prime_number(int n)
+int is_prime_number(int n)
 {
 	if (n <= 1)
 		return (0);
