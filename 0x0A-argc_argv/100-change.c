@@ -31,7 +31,7 @@ int main(int argc, char *argv[])
 		else if (cash >= 10)
 			cash -= 10;
 		else if (cash >= 5)
-			cash -=5;
+			cash -= 5;
 		else if (cash >= 2)
 			cash -= 2;
 		else
