@@ -32,4 +32,8 @@ char *str_concat(char *s1, char *s2)
 		return (NULL);
 	for (m = 0; m < x; m++)
 		len[m] = s1[m];
+	for (l = 0; l < y; m++, l++)
+		len[m] = s2[l];
+
+	return (len);
 }
