@@ -1,4 +1,6 @@
 #include "main.h"
+#include <stdlib.h>
+#include <stdio.h>
 
 /**
  * strtow - splits a string into words
@@ -6,7 +8,7 @@
  * Return: pointer to an array of strings (success) or NULL
  * if str == NULL or str == "" or function fails
  */
-char **strtow(char *str)
+/*char **strtow(char *str)
 {
 	char **ptr;
 	int i, k, len, start, end, j = 0;
@@ -41,46 +43,46 @@ char **strtow(char *str)
 	}
 	ptr[i] = NULL;
 	return (ptr);
-}
+}*/
 /**
  * isSpace - determines if character is a space or not
  * @c: input char
  * Return: 1 if true or 0 or not
  */
-int isSpace(char c)
+/*int isSpace(char c)
 {
 	return (c == ' ');
-}
+}*/
 /**
  * startIndex - returns first index of non-space char
  * @s: input string
  * @index: starting index
  * Return: index of first non-space char
  */
-int startIndex(char *s, int index)
+/*int startIndex(char *s, int index)
 {
 	while (isSpace(*(s + index)))
 		index++;
 	return (index);
-}
+}*/
 /**
  * endIndex - returns last index of non-space char
  * @s: input string
  * @index: starting index
  * Return: index of last index of non-space char
  */
-int endIndex(char *s, int index)
+/*int endIndex(char *s, int index)
 {
 	while (!isSpace(*(s + index)))
 		index++;
 	return (index);
-}
+}*/
 /**
  * countWords - counts numbers of words in string
  * @s: input string
  * Return: number of words
  */
-int countWords(char *s)
+/*int countWords(char *s)
 {
 	int wordOn = 0;
 	int words = 0;
@@ -97,9 +99,7 @@ int countWords(char *s)
 		s++;
 	}
 	return (words);
-}
-#include "main.h"
-#include <stdlib.h>
+}*/
 /**
  * ch_free_grid - frees a 2 dimensional array
  * @grid: multidimensional array of char.
