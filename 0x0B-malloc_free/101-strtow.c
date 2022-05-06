@@ -3,7 +3,7 @@
 #include <stdio.h>
 
 /**
- * _realloc - splits a string into words
+ * strtow - splits a string into words
  * @str: string of words to be split
  * Return: pointer to an array of strings (success) or NULL
  * if str == NULL or str == "" or function fails
@@ -22,7 +22,7 @@ char **strtow(char *str)
 	for (i = 0; i < words; i++)
 	{
 		start = startIndex(str, j);
-		end = endIndex(atr, start);
+		end = endIndex(str, start);
 		len = end - start;
 		ptr[i] = malloc(sizeof(char) * (len + 1));
 		if (!ptr[i])
