@@ -10,3 +10,4 @@ void print_tab(char **tab);
 int startIndex(char *s, int index);
 int endIndex(char *s, int index);
 int countWords(char *s);
+int isSpace(char c);
