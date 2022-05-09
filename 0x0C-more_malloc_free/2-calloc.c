@@ -1,5 +1,11 @@
 #include "main.h"
 #include <stdlib.h>
+/**
+ * _calloc - allocates memory for an array
+ * @nmemb: number of items
+ * @size: size of items
+ * Return: ptr;
+ */
 
 void *_calloc(unsigned int nmemb, unsigned int size)
 {
