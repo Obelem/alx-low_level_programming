@@ -18,8 +18,8 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 
 	if (new_size == 0 && ptr != NULL)
 	{
-		return (NULL);
 		free(ptr);
+		return (NULL);
 	}
 	if (ptr == NULL)
 	{
@@ -34,7 +34,7 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 	clone_ptr = ptr;
 
 	/* assigne old values to to new pointer */
-	for (i = 0; i < new_size; i++)
+	for (i = 0; i < old_size; i++)
 		new_ptr[i] = clone_ptr[i];
 
 	free(ptr);
