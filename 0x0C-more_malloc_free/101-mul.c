@@ -83,7 +83,7 @@ char *_itoa(int n, int i)
 int main(int argc, char *argv[])
 {
 	int num1, num2, mul, i, j, k;
-	char err[] = "error";
+	char err[] = "Error";
 	char *ans;
 
 	if (argc != 3)
