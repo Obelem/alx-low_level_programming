@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
 	{
 		for (j = 0; argv[i][j] != '\0'; j++)
 		{
-			if (argv[i][j] < 48 || argv[i][j] > 57)
+			if ((argv[i][j] < 48 || argv[i][j] > 57) && argv[i][j] != '-')
 			{
 				for (k = 0; err[k] != '\0'; k++)
 					_putchar(err[k]);
@@ -55,13 +55,20 @@ int _atoi(char *s)
 {
 	int i = 0;
 	int num = 0;
+	int sign = 1;
 
 	while (s[i] != 0)
 	{
+		if (s[i] == '-')
+		{
+			sign = sign * -1;
+			i++;
+			continue;
+		}
 		num = (num * 10) + (s[i] - '0');
 		i++;
 	}
-	return (num);
+	return (num * sign);
 }
 
 /**
@@ -73,19 +80,37 @@ int _atoi(char *s)
 char *_itoa(int n, int i)
 {
 	int count = 0;
+	int sign;
 	int j = 0;
 	char *ptr;
+
+	if (n < 0)
+	{
+		n = n * -1;
+		sign = -1;
+	}
 
 	while (i <= n)
 	{
 		i = i * 10;
 		count++;
 	}
+	if (sign == -1)
+		count++;
+
 	ptr = malloc((count + 1) * sizeof(char));
 	i = i / 10;
 
 	while (j < count)
 	{
+		if (sign == -1)
+		{
+			ptr[0] = '-';
+			j++;
+			sign = 1;
+			continue;
+		}
+
 		ptr[j] = (n / i) + '0';
 		n = n % i;
 		i = i / 10;
