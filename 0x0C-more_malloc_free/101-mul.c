@@ -1,4 +1,5 @@
 #include "main.h"
+#include <ctype.h>
 
 /**
  * main - multiplies tow positive numbers
@@ -8,8 +9,7 @@
  */
 int main(int argc, char *argv[])
 {
-	unsigned long mul;
-	int i, j;
+	int num1, num2, mul, i, j;
 
 	if (argc != 3)
 	{
@@ -20,14 +20,14 @@ int main(int argc, char *argv[])
 	{
 		for (j = 0; argv[i][j] != '\0'; j++)
 		{
-			if (argv[i][j] > 57 || argv[i][j] < 48)
+			if (argv[i][j] < 48 || argv[i][j] > 57)
 			{
 				printf("Error\n");
 				exit(98);
 			}
 		}
 	}
-	mul = atol(argv[1]) * artol(argv[2]);
-	printf("%lu\n", mul);
+	num1 = atoi(argv[1]);
+	num2 = atoi(argv[2]);
 	return (0);
 }
