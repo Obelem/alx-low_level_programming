@@ -1,4 +1,4 @@
-#include <stdlib>
+#include <stdlib.h>
 #include "dog.h"
 /**
  * new_dog - creates a new dog struct
@@ -38,7 +38,7 @@ dog_t *new_dog(char *name, float age, char *owner)
 		return (NULL);
 
 	for (i = 0; owner[i] != '\0'; i++)
-		owner_ptr == owner[i];
+		owner_ptr[i] = owner[i];
 
 	newdog.name = name;
 	newdog.age = age;
