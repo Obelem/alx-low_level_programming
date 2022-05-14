@@ -1,273 +1,136 @@
 #include "main.h"
-
-#include <stdio.h>
-
 #include <stdlib.h>
 
 /**
-
-  * int_calloc - special calloc but 4 int arrays
-
-  * @nmemb: n memb
-
-  * @size: size of array
-
-  * Return: int *
-
-  */
-
-int *int_calloc(int nmemb, unsigned int size)
-
+ * _print - moves a string one place to the left and prints it
+ * @str: string to move
+ * @l: size of string
+ */
+void _print(char *str, int l)
 {
+	int i, j;
 
-	/* declarations */
-
-	int *p, n;
-
-	/* checking inputs */
-
-	if (nmemb == 0 || size == 0)
-
-		return (NULL);
-
-	/* malloc the space & check for fail */
-
-	p = malloc(nmemb * size);
-
-	if (p == NULL)
-
-		return (NULL);
-
-	/* calloc */
-
-	for (n = 0; n < nmemb; n++)
-
-		p[n] = 0;
-
-	return (p);
-
-}
-
-
-
-/**
-
-  * mult - multiplication
-
-  * @product: int * 4 answer
-
-  * @n1: string num1
-
-  * @n2: string num2
-
-  * @len1: len num1
-
-  * @len2: len num2
-
-  * Return: void
-
-  */
-
-void mult(int *product, char *n1, char *n2, int len1, int len2)
-
-{
-
-	/* declarations */
-
-	int i;
-
-	int j;
-
-	int f1, f2;
-
-	int sum;
-
-	/* the long math */
-
-	for (i = len1 - 1; i >= 0; i--)
-
+	i = j = 0;
+	while (i < l)
 	{
-
-		sum = 0;
-
-		f1 = n1[i] - '0';
-
-		for (j = len2 - 1; j >= 0; j--)
-
-		{
-
-			f2 = n2[j] - '0';
-
-			sum += product[i + j + 1] + (f1 * f2);
-
-			product[i + j + 1] = sum % 10;
-
-			sum /= 10;
-
-		}
-
-		if (sum > 0)
-
-			product[i + j + 1] += sum;
-
+		if (str[i] != '0')
+			j = 1;
+		if (j || i == l - 1)
+			_putchar(str[i]);
+		i++;
 	}
-
-	for (i = 0; product[i] == 0 && i < len1 + len2; i++)
-
-	{}
-
-	if (i == len1 + len2)
-
-		_putchar('0');
-
-	for (; i < len1 + len2; i++)
-
-		_putchar(product[i] + '0');
-
 	_putchar('\n');
-
+	free(str);
 }
-
-
-
 /**
-
-  * is_valid - is the number a valid one
-
-  * @num : char string num
-
-  * Return: int, 1 if true 0 if false
-
-  */
-
-int is_valid(char *num)
-
+ * mul - multiplies a char with a string ans inserts ans to dest
+ * @n : char to multiply
+ * @num: string to multiply
+ * @num_index: last no NULL index of num
+ * @dest: destination of multiplication
+ * @dest_index: highest index to start addition
+ *
+ * Return: pointer to dest, or NULL on failure
+ */
+char *mul(char n, char *num, int num_index, char *dest, int dest_index)
 {
+	int j, k, mul, mulrem, add, addrem;
 
-	/* declarations */
-
-	int i;
-
-	/* checking for ints */
-
-	for (i = 0; num[i]; i++)
-
+	mulrem = addrem = 0;
+	for (j = num_index, k = dest_index; j >= 0; j--, k--)
 	{
-
-		if (num[i] < '0' || num[i] > '9')
-
-			return (0);
-
+		mul = (n - '0') * (num[j] - '0') + mulrem;
+		mulrem = mul / 10;
+		add = (des[k] - '0') + (mul % 10) + addrem;
+		addrem = add / 10;
+		dest[k] = add % 10 + '0';
 	}
-
-	return (1);
-
-}
-
-/**
-
-  * err - errors r us
-
-  * @status: error code 4 exit
-
-  * Return: void
-
-  */
-
-void err(int status)
-
-{
-
-	_putchar('E');
-
-	_putchar('r');
-
-	_putchar('r');
-
-	_putchar('o');
-
-	_putchar('r');
-
-	_putchar('\n');
-
-	exit(status);
-
-}
-
-/**
-
-  * main - getting the args
-
-  * @argc: args #
-
-  * @argv: arg array
-
-  * Return: 0
-
-  */
-
-int main(int argc, char **argv)
-
-{
-
-	/* declarations */
-
-	int i, j, len1 = 0, len2 = 0;
-
-	int *res;
-
-	/* too many args? too few? */
-
-	if (argc != 3)
-
+	for (addrem += mulrem; k >= 0 && addrem; k--)
 	{
-
-		err(98);
-
+		add = (dest[k] - '0') + addrem;
+		addrem = add / 10;
+		dest[k] = add % 10 + '0';
 	}
+	if (addrem)
+		return (NULL);
+	return (dest);
+}
+/**
+ * check_for_digits - checks the arguments for digits
+ * @av: pointer to arguments
+ * Return: 0 if digits, 1 if not
+ */
+int check_for_digits(char **av)
+{
+	int i, j;
 
-	/* using isvalid */
-
-	for (i = 1; i < argc; i++)
-
+	for (i = 1; i < 3; i++)
 	{
-
-		if (!(is_valid(argv[i])))
-
-			err(98);
-
-		if (i == 1)
-
+		for (j = 0; av[i][j]; j++)
 		{
-
-			for (j = 0; argv[i][j]; j++)
-
-				len1++;
-
+			if (av[i][j] < '0' || av[i][j] > '9')
+				return (1);
 		}
-
-		if (i == 2)
-
-		{
-
-			for (j = 0; argv[i][j]; j++)
-
-				len2++;
-
-		}
-
 	}
-
-	res = int_calloc(len1 + len2, sizeof(int));
-
-	if (res == NULL)
-
-		err(98);
-
-	mult(res, argv[1], argv[2], len1, len2);
-
-	free(res);
-
 	return (0);
+}
+/**
+ * init - init a string
+ * @str: string to initialize
+ * @l: len of string
+ */
+void init(char *str, int l)
+{
+	int i;
 
+	for (i = 0; i < l; i++)
+		str[i] = '0';
+	str[i] = '\0';
+}
+/**
+ * main - mul two numbers
+ * @argc: number of arguments
+ * @argv: argument vector
+ * Return: 0 or exit staturs of 98 if failure
+ */
+int main(int argc, char *argv[])
+{
+	int l1, l2, ln, ti, i;
+	char *a;
+	char *t;
+	char e[] = "Error\n";
+
+	if (argc != 3 || check_for_digits(argv))
+	{
+		for (ti = 0; e[ti]; ti++)
+			_putchar(e[ti]);
+		exit(98);
+	}
+	for (l1 = 0; argv[1][l1]; l1++)
+		;
+	for (l2 = 0; argv[2][l2]; l2++)
+		;
+	ln = l1 + l2 + 1;
+	a = malloc(ln * sizeof(char));
+	if (a == NULL)
+	{
+		for (ti = 0; e[ti]; ti++)
+			_putchar(e[ti]);
+		exit(98);
+	}
+	init(a, ln - 1);
+	for (ti = l2 - 1, i = 0; ti >= 0; ti--, i++)
+	{
+		t = mul(argv[2][ti], argv[1], l1 - 1, a, (ln - 2) - i);
+
+		if (t == NULL)
+		{
+			for (ti = 0; e[ti]; ti++)
+				_putchar(e[ti]);
+			free(a);
+			exit(98);
+		}
+	}
+	_print(a, ln - 1);
+	return (0);
 }
