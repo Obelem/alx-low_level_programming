@@ -1,121 +1,273 @@
 #include "main.h"
 
+#include <stdio.h>
+
+#include <stdlib.h>
+
 /**
- * _atoi - convert ascii to integer
- * @s: string to convert
- * Return: corresponding integer
- */
 
-int _atoi(char *s)
+  * int_calloc - special calloc but 4 int arrays
+
+  * @nmemb: n memb
+
+  * @size: size of array
+
+  * Return: int *
+
+  */
+
+int *int_calloc(int nmemb, unsigned int size)
+
 {
-	int i = 0;
-	int num = 0;
-	int sign = 1;
 
-	while (s[i] != 0)
-	{
-		if (s[i] == '-')
-		{
-			sign = sign * -1;
-			i++;
-			continue;
-		}
-		num = (num * 10) + (s[i] - '0');
-		i++;
-	}
-	return (num * sign);
+	/* declarations */
+
+	int *p, n;
+
+	/* checking inputs */
+
+	if (nmemb == 0 || size == 0)
+
+		return (NULL);
+
+	/* malloc the space & check for fail */
+
+	p = malloc(nmemb * size);
+
+	if (p == NULL)
+
+		return (NULL);
+
+	/* calloc */
+
+	for (n = 0; n < nmemb; n++)
+
+		p[n] = 0;
+
+	return (p);
+
 }
 
+
+
 /**
- * _itoa - integer to ascii
- * @n: integer to convert
- * @i: divisor
- * Return: pointer to string
- */
-char *_itoa(int n, int i)
+
+  * mult - multiplication
+
+  * @product: int * 4 answer
+
+  * @n1: string num1
+
+  * @n2: string num2
+
+  * @len1: len num1
+
+  * @len2: len num2
+
+  * Return: void
+
+  */
+
+void mult(int *product, char *n1, char *n2, int len1, int len2)
+
 {
-	int count = 0;
-	int sign;
-	int j = 0;
-	char *ptr;
 
-	if (n < 0)
+	/* declarations */
+
+	int i;
+
+	int j;
+
+	int f1, f2;
+
+	int sum;
+
+	/* the long math */
+
+	for (i = len1 - 1; i >= 0; i--)
+
 	{
-		n = n * -1;
-		sign = -1;
-	}
 
-	while (i <= n)
-	{
-		i = i * 10;
-		count++;
-	}
-	if (sign == -1)
-		count++;
+		sum = 0;
 
-	ptr = malloc((count + 1) * sizeof(char));
-	i = i / 10;
+		f1 = n1[i] - '0';
 
-	while (j < count)
-	{
-		if (sign == -1)
+		for (j = len2 - 1; j >= 0; j--)
+
 		{
-			ptr[0] = '-';
-			j++;
-			sign = 1;
-			continue;
+
+			f2 = n2[j] - '0';
+
+			sum += product[i + j + 1] + (f1 * f2);
+
+			product[i + j + 1] = sum % 10;
+
+			sum /= 10;
+
 		}
 
-		ptr[j] = (n / i) + '0';
-		n = n % i;
-		i = i / 10;
-		j++;
+		if (sum > 0)
+
+			product[i + j + 1] += sum;
+
 	}
-	ptr[j] = '\0';
-	return (ptr);
-}
-/**
- * main - multiplies tow positive numbers
- * @argc: arg count
- * @argv: arg vector
- * Return: 0, Always Success
- */
-int main(int argc, char *argv[])
-{
-	int num1, num2, mul, i, j, k;
-	char err[] = "Error";
-	char *ans;
 
-	if (argc != 3)
-	{
-		for (k = 0; err[k] != '\0'; k++)
-			_putchar(err[k]);
+	for (i = 0; product[i] == 0 && i < len1 + len2; i++)
 
-		_putchar('\n');
-		exit(98);
-	}
-	for (i = 1; i < argc; i++)
-	{
-		for (j = 0; argv[i][j] != '\0'; j++)
-		{
-			if ((argv[i][j] < 48 || argv[i][j] > 57) && argv[i][j] != '-')
-			{
-				for (k = 0; err[k] != '\0'; k++)
-					_putchar(err[k]);
+	{}
 
-				_putchar('\n');
-				exit(98);
-			}
-		}
-	}
-	num1 = _atoi(argv[1]);
-	num2 = _atoi(argv[2]);
-	mul = num1 * num2;
+	if (i == len1 + len2)
 
-	ans = _itoa(mul, 1);
-	for (i = 0; ans[i] != '\0'; i++)
-		_putchar(ans[i]);
+		_putchar('0');
+
+	for (; i < len1 + len2; i++)
+
+		_putchar(product[i] + '0');
 
 	_putchar('\n');
+
+}
+
+
+
+/**
+
+  * is_valid - is the number a valid one
+
+  * @num : char string num
+
+  * Return: int, 1 if true 0 if false
+
+  */
+
+int is_valid(char *num)
+
+{
+
+	/* declarations */
+
+	int i;
+
+	/* checking for ints */
+
+	for (i = 0; num[i]; i++)
+
+	{
+
+		if (num[i] < '0' || num[i] > '9')
+
+			return (0);
+
+	}
+
+	return (1);
+
+}
+
+/**
+
+  * err - errors r us
+
+  * @status: error code 4 exit
+
+  * Return: void
+
+  */
+
+void err(int status)
+
+{
+
+	_putchar('E');
+
+	_putchar('r');
+
+	_putchar('r');
+
+	_putchar('o');
+
+	_putchar('r');
+
+	_putchar('\n');
+
+	exit(status);
+
+}
+
+/**
+
+  * main - getting the args
+
+  * @argc: args #
+
+  * @argv: arg array
+
+  * Return: 0
+
+  */
+
+int main(int argc, char **argv)
+
+{
+
+	/* declarations */
+
+	int i, j, len1 = 0, len2 = 0;
+
+	int *res;
+
+	/* too many args? too few? */
+
+	if (argc != 3)
+
+	{
+
+		err(98);
+
+	}
+
+	/* using isvalid */
+
+	for (i = 1; i < argc; i++)
+
+	{
+
+		if (!(is_valid(argv[i])))
+
+			err(98);
+
+		if (i == 1)
+
+		{
+
+			for (j = 0; argv[i][j]; j++)
+
+				len1++;
+
+		}
+
+		if (i == 2)
+
+		{
+
+			for (j = 0; argv[i][j]; j++)
+
+				len2++;
+
+		}
+
+	}
+
+	res = int_calloc(len1 + len2, sizeof(int));
+
+	if (res == NULL)
+
+		err(98);
+
+	mult(res, argv[1], argv[2], len1, len2);
+
+	free(res);
+
 	return (0);
+
 }
