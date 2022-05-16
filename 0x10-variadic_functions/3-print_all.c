@@ -3,76 +3,73 @@
 #include "variadic_functions.h"
 
 /**
- * print_c - print a char
- * @c: char to print
+ * _printchar - prints char
+ * @list: va_list passed
  */
-void print_c(va_list c)
+void _printchar(va_list list)
 {
-	printf("%c", va_arg(c, int));
+	printf("%c", va_arg(list, int));
 }
 /**
- * print_s - prints a string
- * @s: string to print
+ * _printstr - prints string
+ * @list: va_list passed
  */
-void print_s(va_list s)
+void _printstr(va_list list)
 {
-	char *str = va_arg(s, char *);
+	char *s;
 
-	if (!str)
-		str = "(nil)";
-	printf("%s", str);
+	s = va_arg(list, char *);
+	if (s == NULL)
+		s = "(nil)";
+	printf("%s", s);
 }
 /**
- * print_i - prints an int
- * @i: int to print
+ * _printfloat - printf float
+ * @list: va_list passed
  */
-void print_i(va_list i)
+void _printfloat(va_list list)
 {
-	printf("%d", va_arg(i, int));
+	printf("%f", va_arg(list, double));
 }
 /**
- * print_f - prints a float
- * @f: float to print
+ * _printint - prints int
+ * @list: va_list passed
  */
-void print_f(va_list f)
+void _printint(va_list list)
 {
-	print("%f", va_arg(f, double));
+	printf("%d", va_arg(list, int));
 }
 /**
- * print_all - prints anything
- * @format: list of argument types passed to the funcion
+ * print_all - prints all data types
+ * @format: format string
  */
 void print_all(const char * const format, ...)
 {
 	unsigned int i, j;
-	print_t p[] = {
-		{"c", print_c},
-		{"s", print_s},
-		{"i", print_i},
-		{"f", print_f},
-		{NULL, NULL}
-	};
-	va_list valist;
-	char *separator = "";
+	va_list args;
+	char *sep;
 
-	va_start(valist, format);
+	checker storage[] = {
+		{"c", _printchar},
+		{"f", _printfloat},
+		{"s", _printstr},
+		{"i", _printint}
+	};
+
 	i = 0;
-	while (format && format[i])
+	sep = "";
+	va_start(args, format);
+	while (format != NULL && format[i / 4] != '\0')
 	{
-		j = 0;
-		while (p[j].t != NULL)
+		j = i % 4;
+		if (storage[j].type[0] == format[i / 4])
 		{
-			if (*(p[j].t) == format[i])
-			{
-				printf("%s", separator);
-				p[j].f(valist);
-				separator = ", ";
-				break;
-			}
-			j++;
+			printf("%s", sep);
+			storage[j].f(args);
+			sep = ", ";
 		}
 		i++;
 	}
-	va_end(valist);
 	printf("\n");
+	va_end(args);
 }
