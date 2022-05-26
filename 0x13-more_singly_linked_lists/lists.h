@@ -12,7 +12,7 @@
  */
 typedef struct list
 {
-	int n;
+	unsigned long int n;
 	struct list *next;
 } listint_t;
 
