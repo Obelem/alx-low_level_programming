@@ -8,6 +8,8 @@
 int pop_listint(listint_t **head)
 {
 	int n;
+	/* store the address of current head to be freed later */
+	listint_t *temp = *head;
 
 	if (*head == NULL || (*head)->next == NULL)
 		return (0);
@@ -15,8 +17,10 @@ int pop_listint(listint_t **head)
 	/* Save value of current head node before deletion */
 	n = (*head)->n;
 
-	/* delete head node */
-	*head = (*head)->next;
+	/* delete head node*/
+	*head = temp->next;
 
+	/* free previous head node */
+	free(temp);
 	return (n);
 }
