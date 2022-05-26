@@ -11,7 +11,7 @@ int pop_listint(listint_t **head)
 	/* store the address of current head to be freed later */
 	listint_t *temp = *head;
 
-	if (*head == NULL || (*head)->next == NULL)
+	if (*head == NULL)
 		return (0);
 
 	/* Save value of current head node before deletion */
