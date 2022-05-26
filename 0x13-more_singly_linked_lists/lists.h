@@ -5,9 +5,14 @@
 #include <stdlib.h>
 #include <string.h>
 
+/**
+ * struct list - node sturct
+ * @n: node data
+ * @next: pointer to next address
+ */
 typedef struct list
 {
-	unsigned long int n;
+	int n;
 	struct list *next;
 } listint_t;
 
