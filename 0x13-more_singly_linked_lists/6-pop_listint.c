@@ -9,7 +9,7 @@ int pop_listint(listint_t **head)
 {
 	int n;
 
-	if (*head == NULL)
+	if (*head == NULL || (*head)->next == NULL)
 		return (0);
 
 	/* Save value of current head node before deletion */
