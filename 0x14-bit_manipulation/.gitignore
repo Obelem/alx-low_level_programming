@@ -1,3 +1,4 @@
 a.out
 *-main.c
 *.swp
+_putchar.c
