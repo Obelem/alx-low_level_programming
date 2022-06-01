@@ -9,7 +9,7 @@
 int main(int argc, char **argv)
 {
 	int f1, f2, n;
-	char buff[1024];
+	char buf[1024];
 
 	if (argc != 3)
 	{
