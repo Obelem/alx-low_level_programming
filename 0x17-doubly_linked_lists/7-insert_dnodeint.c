@@ -16,7 +16,7 @@ dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 	for (count = 0; current && count < idx; count++)
 		current = current->next;
 
-	if (count != idx || !new_node)
+	if (count != idx || !new_node || !current)
 		return (NULL);
 
 	new_node->n = n;
