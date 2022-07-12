@@ -1,0 +1,4 @@
+*.c
+*.o
+*.swp
+__pycache__
