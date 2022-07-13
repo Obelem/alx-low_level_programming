@@ -1,3 +1,3 @@
 #!/bin/bash
-gcc -Wall -fPIC -shared -o libc.so libc.c
-LD_PRELOAD=$PWD/libc.so ./gm
+wget -P /tmp/ https://raw.github.com/luischaparroc/holbertonschool-low_level_programming/master/0x18-dynamic_libraries/nrandom.so
+export LD_PRELOAD=/tmp/nrandom.so
