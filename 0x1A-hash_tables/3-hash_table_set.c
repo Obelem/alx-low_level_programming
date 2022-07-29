@@ -24,7 +24,6 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 
 	idx = key_index((const unsigned char *)key, ht->size);
 
-	/* update if key exists */
 	for (currNode = ht->array[idx]; currNode; currNode = currNode->next)
 	{
 		if (strcmp(value, currNode->value) == 0)
@@ -33,7 +32,6 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 			return (1);
 		}
 	}
-	/* create new node if key does not exist */
 	newNode = malloc(sizeof(hash_node_t));
 	if (!newNode)
 	{
@@ -41,9 +39,13 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 		return (0);
 	}
 	newNode->key = strdup(key);
+	if (newNode->key == NULL)
+	{
+		free(newNode);
+		return (NULL);
+	}
 	newNode->value = valDup;
 	newNode->next = ht->array[idx];
 	ht->array[idx] = newNode;
-
 	return (1);
 }
